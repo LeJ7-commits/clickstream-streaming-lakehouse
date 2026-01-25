@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/clickstream.schema.json",
+  "title": "ClickstreamEvent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "schema_version",
+    "event_time",
+    "ingest_time",
+    "user_id",
+    "session_id",
+    "action",
+    "page"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "description": "Unique event identifier (UUID). Used for idempotency/dedup.",
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+    },
+    "schema_version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Schema version for backward/forward compatibility."
+    },
+    "event_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Time the event occurred (UTC)."
+    },
+    "ingest_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Time the event was ingested/produced (UTC)."
+    },
+    "user_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "session_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "action": {
+      "type": "string",
+      "enum": ["view", "click", "add_to_cart", "purchase"]
+    },
+    "page": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Logical page name or route, e.g., /home or /product/123."
+    },
+    "referrer": {
+      "type": ["string", "null"],
+      "description": "Referring page/URL if available."
+    },
+    "device_type": {
+      "type": ["string", "null"],
+      "enum": ["mobile", "desktop", "tablet", "other", null]
+    },
+    "country": {
+      "type": ["string", "null"],
+      "pattern": "^[A-Z]{2}$",
+      "description": "ISO-3166-1 alpha-2 country code."
+    },
+    "ip_hash": {
+      "type": ["string", "null"],
+      "description": "Hashed IP or other privacy-preserving identifier (no raw IPs)."
+    },
+    "user_agent": {
+      "type": ["string", "null"]
+    },
+    "source": {
+      "type": ["string", "null"],
+      "description": "Producer identifier, e.g., web, mobile, batch-replay."
+    }
+  }
+}

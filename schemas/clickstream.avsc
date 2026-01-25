@@ -1,0 +1,38 @@
+{
+  "type": "record",
+  "name": "ClickstreamEvent",
+  "namespace": "com.jayle.streaming",
+  "fields": [
+    { "name": "event_id", "type": "string" },
+    { "name": "schema_version", "type": "int" },
+
+    { "name": "event_time", "type": { "type": "string", "logicalType": "timestamp-iso8601" } },
+    { "name": "ingest_time", "type": { "type": "string", "logicalType": "timestamp-iso8601" } },
+
+    { "name": "user_id", "type": "string" },
+    { "name": "session_id", "type": "string" },
+
+    {
+      "name": "action",
+      "type": {
+        "type": "enum",
+        "name": "Action",
+        "symbols": ["view", "click", "add_to_cart", "purchase"]
+      }
+    },
+
+    { "name": "page", "type": "string" },
+    { "name": "referrer", "type": ["null", "string"], "default": null },
+
+    {
+      "name": "device_type",
+      "type": ["null", { "type": "enum", "name": "DeviceType", "symbols": ["mobile", "desktop", "tablet", "other"] }],
+      "default": null
+    },
+
+    { "name": "country", "type": ["null", "string"], "default": null },
+    { "name": "ip_hash", "type": ["null", "string"], "default": null },
+    { "name": "user_agent", "type": ["null", "string"], "default": null },
+    { "name": "source", "type": ["null", "string"], "default": null }
+  ]
+}

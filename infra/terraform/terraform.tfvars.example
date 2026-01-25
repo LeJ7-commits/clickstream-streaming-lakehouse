@@ -1,0 +1,4 @@
+aws_region          = "eu-north-1"
+project_name        = "realtime-lakehouse"
+environment         = "demo"
+s3_bucket_name = "lej7-s3-databricks-realtime-04140428"

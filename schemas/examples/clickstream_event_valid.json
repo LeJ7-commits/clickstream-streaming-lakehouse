@@ -1,0 +1,16 @@
+{
+  "event_id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+  "schema_version": 1,
+  "event_time": "2026-01-25T12:00:01Z",
+  "ingest_time": "2026-01-25T12:00:02Z",
+  "user_id": "u_10291",
+  "session_id": "s_a83k19",
+  "action": "click",
+  "page": "/product/123",
+  "referrer": "/home",
+  "device_type": "mobile",
+  "country": "SE",
+  "ip_hash": "sha256:9f3c...redacted",
+  "user_agent": "Mozilla/5.0",
+  "source": "web"
+}
