@@ -49,3 +49,33 @@ query = (
 )
 
 query.awaitTermination()
+
+# --- STREAM PROGRESS / HEALTH CHECK ---
+
+from pyspark.sql.functions import max
+
+bronze_df = spark.read.format("delta").load(BRONZE_PATH)
+
+display(
+    bronze_df
+    .select(
+        max("ingest_time").alias("last_ingest_time"),
+        count("*").alias("total_events")
+    )
+)
+
+# --- STREAM PROGRESS / HEALTH CHECK ---
+
+from pyspark.sql.functions import max
+
+bronze_df = spark.read.format("delta").load(BRONZE_PATH)
+
+display(
+    bronze_df
+    .select(
+        max("ingest_time").alias("last_ingest_time"),
+        count("*").alias("total_events")
+    )
+)
+
+dbutils.fs.ls(CHECKPOINT_PATH)
